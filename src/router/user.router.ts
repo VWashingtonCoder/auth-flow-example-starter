@@ -7,7 +7,7 @@ import { prisma } from "../../prisma/db.setup";
 const userController = Router();
 
 // todo
-// Needs _____?
+// Needs Authentication. Route is concentrated on who the user is so it can find and update the correct user email.
 userController.patch(
   "/users/:email",
   validateRequest({
@@ -54,7 +54,7 @@ userController.patch(
 );
 
 // todo:
-// Needs _____?
+// Needs Authentication currently. Route is concentrated on who the user is so it can return the correct set of dogs.
 userController.get("/users/:userEmail/dogs", async (req, res) => {
   const { userEmail } = req.params;
   const dogs = await prisma.dog.findMany({

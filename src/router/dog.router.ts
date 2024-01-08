@@ -7,14 +7,14 @@ import { intParseableString as intParseableString } from "../zod/parseableString
 
 const dogController = Router();
 // TODO
-// Needs ______?
+// Needs Authorization if required to see all dogs. Though it could also benefit from neither.
 dogController.get("/dogs", async (req, res) => {
   const dogs = await prisma.dog.findMany();
   return res.json(dogs);
 });
 
 // TODO
-// Needs ______?
+// Needs Authentication. Route is concerned with who is making the dog, so it can create the dog for the correct user.
 dogController.post(
   "/dogs",
   validateRequest({
@@ -54,7 +54,7 @@ dogController.post(
 );
 
 // TODO
-// Needs ______?
+// Needs authorization. Route would be concerned with if the user has the ability to update the dog. If they don't, then they can't update the dog. If they do, then they can update the dog.
 dogController.patch(
   "/dogs/:dogId",
   validateRequest({
@@ -101,7 +101,7 @@ dogController.patch(
 );
 
 // TODO
-// Needs _____?
+// Needs authorization to guarantee user can delete dog. If user is not authorized, then they can't delete dog. If user is authorized, then they can delete dog.
 dogController.delete(
   "/dogs/:dogId",
   validateRequest({
