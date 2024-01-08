@@ -16,6 +16,19 @@ const password = 'password';
 //     console.log({ result });
 // });
 
-bcrypt.compare(password, "$2b$11$UCVeEUcJlA/K8KdtKOy51eMHp7bDvzpV/lf9RTAKZq9V0SjKm1V4a").then((result) => {
-    console.log({ result });
-});
+// bcrypt.compare(password, "$2b$11$UCVeEUcJlA/K8KdtKOy51eMHp7bDvzpV/lf9RTAKZq9V0SjKm1V4a").then((result) => {
+//     console.log({ result });
+// });
+
+// jon = "$2b$11$3Qo9tpVSCHwbI2JzFAO.bu9byxzDwmQJeU3gfHulzDhZ0n.HSfYyi"
+// peter = "$2b$11$ghQnsl1T8bFAhOjsaacqT.ADbc79Gqt3FwTvgh5AB0e5wILW0deT6"
+const jonHashedPassword = "$2b$11$3Qo9tpVSCHwbI2JzFAO.bu9byxzDwmQJeU3gfHulzDhZ0n.HSfYyi";
+const peterHashedPassword = "$2b$11$ghQnsl1T8bFAhOjsaacqT.ADbc79Gqt3FwTvgh5AB0e5wILW0deT6";
+
+// bcrypt.compare("jon_password", jonHashedPassword).then((result) => {
+//     console.log({ result });
+// }); // result is true
+
+// bcrypt.compare("jon_password", peterHashedPassword).then((result) => {
+//     console.log({ result });
+// }); // result is false

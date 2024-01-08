@@ -1,4 +1,5 @@
 import { prisma } from "./db.setup";
+import { encryptPassword } from "../src/auth-utils";
 
 const clearDb = async () => {
   await prisma.dog.deleteMany();
@@ -13,12 +14,14 @@ const seed = async () => {
   const jon = await prisma.user.create({
     data: {
       email: "jon@jon.com",
+      passwordHash: await encryptPassword("jon_password"),
     },
   });
   // create peter
   const peter = await prisma.user.create({
     data: {
       email: "peter@peter.com",
+      passwordHash: await encryptPassword("peter_password"),
     },
   });
 
