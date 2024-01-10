@@ -6,13 +6,28 @@ import { authController } from "./router/auth.router";
 import { User } from "@prisma/client";
 
 const app = express();
+
 declare global {
   namespace Express {
     interface Request {
       user?: User;
     }
   }
+
+  namespace NodeJS {
+    export interface ProcessEnv {
+      DATABASE_URL: string;
+      JWT_SECRET: string;
+    }
+  }
 }
+
+["DATABASE_URL", "JWT_SECRET"].forEach((key) => {
+  if (process.env[key] === undefined) {
+    throw new Error(`Missing environment variable ${key}`);
+  }
+});
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
