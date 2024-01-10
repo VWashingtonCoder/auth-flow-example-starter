@@ -4,6 +4,10 @@ import "express-async-errors";
 import { validateRequest } from "zod-express-middleware";
 import { z } from "zod";
 import bcrypt from "bcrypt";
+import {
+  createTokenForUser,
+  createUnsecuredUserInformation,
+} from "../auth-utils";
 
 const authController = Router();
 authController.post(
@@ -41,8 +45,12 @@ authController.post(
       });
     }
 
+    const userInformation = createUnsecuredUserInformation(user);
+    const token = createTokenForUser(user);
+
     return res.status(200).json({
-      message: "I guess you logged in? 🎉",
+      token,
+      userInformation,
     });
   }
 );
